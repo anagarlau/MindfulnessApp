@@ -3,7 +3,7 @@
 require("dotenv/config");
 
 // ℹ️ Connects to the database
-require("./db");
+
 
 // Handles http requests (express is node js framework)
 // https://www.npmjs.com/package/express
@@ -33,13 +33,13 @@ app.use(
     secret: process.env.SESSION_SECRET,
     cookie: { maxAge: 1000 * 60 * 60 * 24 },
     saveUninitialized: false,
-    //Forces the session to be saved back to the session store,
+    // Forces the session to be saved back to the session store,
     // even if the session was never modified during the request.
-    resave: true,
-    store: MongoStore.create({
-      // mongooseConnection: mongoose.connection
-      mongoUrl: process.env.MONGODB_URI
-    })
+    // resave: true,
+    // store: MongoStore.create({
+    //   // mongooseConnection: mongoose.connection
+    //   mongoUrl: process.env.MONGODB_URI
+    // })
   })
 )
 // end of session configuration
@@ -90,7 +90,7 @@ passport.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
-
+require("./db");
 // 👇 Start handling routes here
 // Contrary to the views version, all routes are controled from the routes/index.js
 const index = require("./routes/index");

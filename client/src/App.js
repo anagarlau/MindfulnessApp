@@ -12,7 +12,7 @@ import Login from './Components/Authentication/Login'
 import Signup from './Components/Authentication/Signup';
 import Test from "./Components/Test/Test"
 import ToDoList from "./Components/ToDoList/ToDoList"
-
+import AddEntry from './Components/Journal/AddEntry';
 
 
 class App extends React.Component {
@@ -41,7 +41,7 @@ class App extends React.Component {
           exact path='/'
           render={props => {
             if (this.state.user) {
-              return <WelcomePage {...props} />
+              return <WelcomePage user={this.state.user} {...props} />
             } else return <Redirect to='/login' />
           }}
         />
@@ -56,11 +56,14 @@ class App extends React.Component {
         />
 
 
-
-        <Route exact path='/welcomepage' component={WelcomePage} />
+          
+        {/* <Route exact path='/welcomepage' component={WelcomePage} /> */}
         <Route exact path='/dashboard' component={Dashboard} />
-        <Route exact path='/journal' component={Journal} />
+        <Route exact path='/journal'  
+        render={props => <AddEntry user={this.state.user} {...props} />}
+        />  
         <Route exact path='/routine' component={ToDoList} />
+        
         {/* <Route exact path='/routine' component={TodoItems} /> */}
 
         {/* <Route exact path='/login' component={Login} />
@@ -71,6 +74,10 @@ class App extends React.Component {
   }
 
 }
+
+ 
+
+
 
 export default App;
 

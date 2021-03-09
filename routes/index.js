@@ -24,9 +24,9 @@ router.get('/getSelectedEntry', (req, res, next) => {
 router.post('/entries', (req,res, next) => {
 console.log("this is req.body Post request",req.body)
 const {date, question1, question2, question3, ratingMood, ratingMotivation} = req.body;
-JournalEntry.create({date, question1, question2, question3, ratingMood, ratingMotivation})
+JournalEntry.create({date, question1, question2, question3, ratingMood, ratingMotivation, user: req.user})
   .then(entry => {
-    res.send(entry)
+    res.json(entry)
     
   })
   /* .then(() => {

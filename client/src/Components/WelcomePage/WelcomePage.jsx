@@ -12,7 +12,7 @@ export default class WelcomePage extends Component {
   render() {
     return (
       <div>
-        <Navbar/>
+ 
         <h2>This is another mental health app</h2>
       <Link to="/journal">Journal</Link>
       <Link to="/dashboard">Dashboard</Link>
